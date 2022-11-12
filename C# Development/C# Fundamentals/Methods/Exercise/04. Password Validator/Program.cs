@@ -47,6 +47,6 @@ namespace _04._Password_Validator
             return isValid;
         }
 
-        static bool ContainsAtLeastTwoDigits(string password) => password.Count(digit => "1234567890".Contains(digit)) >= 2;
+        static bool ContainsAtLeastTwoDigits(string password) => password.Count(digit => char.IsDigit(digit)) >= 2;
     }
 }
