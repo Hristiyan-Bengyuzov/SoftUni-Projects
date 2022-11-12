@@ -12,31 +12,16 @@ namespace _06._Equal_Sum
 
             for (int i = 0; i < numbers.Length; i++)
             {
-                if (numbers.Length == 1)
-                {
-                    Console.WriteLine(0);
-                    return;
-                }
-
                 leftSum = 0;
-
                 for (int sumLeft = i; sumLeft > 0; sumLeft--)
                 {
-                    int nextLeftElementPosition = sumLeft - 1;
-                    if (sumLeft > 0)
-                    {
-                        leftSum += numbers[nextLeftElementPosition];
-                    }
+                    leftSum += numbers[sumLeft - 1];
                 }
 
                 rightSum = 0;
-                for (int j = i; j < numbers.Length; j++)
+                for (int sumRight = i; sumRight < numbers.Length - 1; sumRight++)
                 {
-                    int nextElementPositon = j + 1;
-                    if (j < numbers.Length - 1)
-                    {
-                        rightSum += numbers[nextElementPositon];
-                    }
+                    rightSum += numbers[sumRight + 1];
                 }
 
                 if (rightSum == leftSum)
