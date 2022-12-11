@@ -21,25 +21,18 @@ namespace _08._Balanced_Parenthesis
             for (int i = 0; i < input.Length; i++)
             {
                 char symbol = input[i];
-                if (parDefinitions.Any(x => x.Value == symbol)) //if it's an opening bracket
+                if (parDefinitions.Any(x => x.Value == symbol)) // if it's an opening bracket
                 {
                     parentheses.Push(symbol);
                 }
-                else if (parDefinitions.Any(x => x.Key == symbol)) // if it's a closing bracket
+                else if (!parentheses.Any() || parDefinitions[symbol] != parentheses.Pop()) // if stack is empty or brackets don't match
                 {
-                    if (parentheses.Any() && parDefinitions[symbol] == parentheses.Peek())
-                    {   // if the closing bracket matches the last opened one
-                        parentheses.Pop();
-                    }
-                    else
-                    {
-                        isBalanced = false;
-                        break;
-                    }
+                    isBalanced = false;
+                    break;
                 }
             }
 
-            if (parentheses.Any())
+            if (parentheses.Any()) // if there is an unpopped bracket
             {
                 isBalanced = false;
             }
