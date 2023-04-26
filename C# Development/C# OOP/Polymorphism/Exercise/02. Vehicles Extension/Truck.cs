@@ -1,0 +1,30 @@
+﻿using System;
+
+namespace Vehicles
+{
+    public class Truck : Vehicle
+    {
+        private const double CONSUMPTION_INCREASE = 1.6;
+        private const double REFUEL_MODIFIER = 0.95;
+
+        public Truck(double fuelQuantity, double fuelConsumption, double tankCapacity) : base(fuelQuantity, fuelConsumption + CONSUMPTION_INCREASE, tankCapacity)
+        {
+        }
+
+        public override void Refuel(double liters)
+        {
+            if (liters <= 0)
+            {
+                Console.WriteLine("Fuel must be a positive number");
+            }
+            else if (this.fuelQuantity + liters * REFUEL_MODIFIER > this.tankCapacity)
+            {
+                Console.WriteLine($"Cannot fit {liters} fuel in the tank");
+            }
+            else
+            {
+                this.fuelQuantity += liters * REFUEL_MODIFIER;
+            }
+        }
+    }
+}
